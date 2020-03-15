@@ -1,8 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
+const bodyParser = require('body-parser');
 
 const app = express();
+
+// Parsing to JSON in Express
+app.use(bodyParser.json());
+
 app.use(authRoutes);
 
 // MongoDB connection
