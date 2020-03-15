@@ -15,7 +15,7 @@ app.use(authRoutes);
 
 // MongoDB connection
 // We need to create an instace in MongoDB and get the Url for connecting to the Cluster
-const mongoUri = 'mongodb+srv://...'
+const mongoUri = 'mongodb+srv://rodolfojc:rodolfo@cluster0-eyxy6.mongodb.net/test?retryWrites=true&w=majority'
 mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useCreateIndex: true
