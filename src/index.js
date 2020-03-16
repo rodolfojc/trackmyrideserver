@@ -5,6 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const bodyParser = require('body-parser');
+const requireAuth = require('./middlewares/requireAuth');
 
 const app = express();
 
@@ -31,9 +32,9 @@ mongoose.connection.on('error', err =>{
     console.log('Something went wrong with Mongo instance connection: ', err);
 });
 
-// Routing
-app.get('/', (req, res) => {
-    res.send('Testing routing');
+// Routing // Added middleware for token verification
+app.get('/', requireAuth, (req, res) => {
+    res.send(`Your email is: ${req.user.email}`);
 });
 
 // Opening port for listening connections / requests
