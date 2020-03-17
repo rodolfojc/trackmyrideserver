@@ -1,4 +1,9 @@
-## trackmyrideserver
+### trackmyrideserver
 
-To RUN the server:
+## RUN the server
+
+Install modules:
+npm install
+
+Run Server:
 npm run dev
