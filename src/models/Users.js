@@ -37,6 +37,7 @@ userSchema.pre('save', function(next) {
             }
             // Asigning the hast password to current user
             user.password = hash;
+            next();
         });
     });
 });
