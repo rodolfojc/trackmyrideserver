@@ -8,9 +8,11 @@ const router = express.Router();
 // Async Function for Signup a new user
 router.post('/signup', async (req, res) => {
    const { email, password } = req.body;
+   const isTermsAgreed = true;
+   const timeStamp = Date.now();
 
    try {
-    const user = new User({ email, password });
+    const user = new User({ email, password, isTermsAgreed, timeStamp});
     await user.save();
 
     const token = jwt.sign({ userId: user._id }, 'TraCKmyR1D3');

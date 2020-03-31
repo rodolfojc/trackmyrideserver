@@ -11,6 +11,16 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    isTermsAgreed: {
+        type: Boolean,
+        require: true,
+    },
+    status: {
+        type: String,        
+    },
+    timeStamp: {
+        type: Date
     }
 });
 
