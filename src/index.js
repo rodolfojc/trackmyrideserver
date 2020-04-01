@@ -1,9 +1,11 @@
 // Models - as reference to be execute just once
 require('./models/Users');
+require('./models/Bikes');
 
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
+const bikeRoutes = require('./routes/bikeRoutes');
 const bodyParser = require('body-parser');
 const requireAuth = require('./middlewares/requireAuth');
 
@@ -13,6 +15,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(authRoutes);
+app.use(bikeRoutes);
 
 // MongoDB connection
 // We need to create an instace in MongoDB and get the Url for connecting to the Cluster
