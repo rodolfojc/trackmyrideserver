@@ -6,8 +6,7 @@ const router = express.Router();
 
 // Async function for adding a new rack
 router.post("/map", async (req, res) => {
-  const { type } = req.body;
-
+  
   console.log(req.body);
 
   try {
