@@ -1,6 +1,7 @@
 // Models - as reference to be execute just once
 require('./models/Users');
 require('./models/Bikes');
+require('./models/Images');
 
 const express = require('express');
 const mongoose = require('mongoose');

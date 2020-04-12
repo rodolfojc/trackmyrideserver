@@ -1,6 +1,18 @@
 const mongoose = require('mongoose');
+//const Images = mongoose.model('Images');
+
+const imagesSchema = new mongoose.Schema({
+    filename: String,
+    originalName: String,
+    desc: String,
+    created: Date
+});
 
 const bikeSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'
+    },
     serial: {
         type: Number,
     },
@@ -19,12 +31,7 @@ const bikeSchema = new mongoose.Schema({
     lock: {
         type: Boolean,
     },
-    img: {
-        //data: Buffer, 
-        //contentType: String
-        type: String,
-    }
-
+    img: [imagesSchema],
 });
 
 mongoose.model('Bike', bikeSchema);
