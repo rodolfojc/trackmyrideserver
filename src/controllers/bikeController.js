@@ -2,16 +2,19 @@ const UPLOAD_PATH = require('../routes/bikeRoutes').UPLOAD_PATH;
 const mongoose = require("mongoose");
 const Image = mongoose.model("Images");
 const Bike = mongoose.model("Bike");
+const User = mongoose.model('Users');
 const path = require("path");
 const fs = require("fs");
 const del = require("del");
 
 exports.registerBike = async (req, res) => {
-  const { serial, brand, color, type, status, lock } = req.body;
+  const { serial, brand, color, type, status, lock, email } = req.body;
+  
 
   try {
-    const bike = new Bike({
-      userId: req.user_id,
+      const user = await User.findOne({ email });
+      const bike = new Bike({
+      userId: user._id,
       serial,
       brand,
       color,
@@ -30,11 +33,13 @@ exports.registerBike = async (req, res) => {
 
 exports.uploadImage = async (req, res) => {
 
-  let img = new Image();  
+  
+  let img = new Image();
+  img.bikeId = req.body.bikeid
   img.filename = req.file.filename;
   img.originalName = req.file.originalname;
   img.desc = req.body.desc;
-
+  
   try {
     await img.save();
     res.status(201).send({ img });
