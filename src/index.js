@@ -2,11 +2,13 @@
 require('./models/Users');
 require('./models/Bikes');
 require('./models/Images');
+require('./models/Racks');
 
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const bikeRoutes = require('./routes/bikeRoutes');
+const rackRoutes = require('./routes/racksRoutes');
 const bodyParser = require('body-parser');
 const requireAuth = require('./middlewares/requireAuth');
 
@@ -17,10 +19,11 @@ app.use(bodyParser.json());
 
 app.use(authRoutes);
 app.use(bikeRoutes);
+app.use(rackRoutes);
 
 // MongoDB connection
 // We need to create an instace in MongoDB and get the Url for connecting to the Cluster
-const mongoUri = 'mongodb+srv://rodolfojc:rodolfo@cluster0-eyxy6.mongodb.net/test?retryWrites=true&w=majority'
+const mongoUri = 'mongodb+srv://admin:Pass1234!@cluster0-ii2az.mongodb.net/trackMyRide'
 mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useCreateIndex: true
