@@ -1,10 +1,13 @@
 // Models - as reference to be execute just once
 require('./models/Users');
+require('./models/Bikes');
+require('./models/Images');
 require('./models/Racks');
 
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
+const bikeRoutes = require('./routes/bikeRoutes');
 const rackRoutes = require('./routes/racksRoutes');
 const bodyParser = require('body-parser');
 const requireAuth = require('./middlewares/requireAuth');
@@ -15,6 +18,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(authRoutes);
+app.use(bikeRoutes);
 app.use(rackRoutes);
 
 // MongoDB connection
