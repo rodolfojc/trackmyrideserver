@@ -8,13 +8,13 @@ const fs = require("fs");
 const del = require("del");
 
 exports.registerBike = async (req, res) => {
-  const { serial, brand, color, type, status, lock, email } = req.body;
+  const { serial, brand, color, type, status, lock, userId } = req.body;
   
 
   try {
-      const user = await User.findOne({ email });
+      //const user = await User.findOne({ _id : userId });
       const bike = new Bike({
-      userId: user._id,
+      userId: userId,
       serial,
       brand,
       color,
