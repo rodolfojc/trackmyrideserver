@@ -8,8 +8,7 @@ const fs = require("fs");
 const del = require("del");
 
 exports.registerBike = async (req, res) => {
-  const { serial, brand, color, type, status, lock, userId } = req.body;
-  
+  const { serial, brand, color, type, status, lock, userId } = req.body;  
 
   try {
       //const user = await User.findOne({ _id : userId });
@@ -32,7 +31,6 @@ exports.registerBike = async (req, res) => {
 };
 
 exports.uploadImage = async (req, res) => {
-
   
   let img = new Image();
   img.bikeId = req.body.bikeid
@@ -47,6 +45,18 @@ exports.uploadImage = async (req, res) => {
     return res.sendStatus(400);
   }
 };
+
+exports.getBikes = function(req, res) {
+  let userId = req.params.id;
+  Bike.find({ userId })
+  .lean()
+  .exec((err, bikes) => {
+    if (err) {
+      return res.sendStatus(400);
+    }
+    res.json(bikes);
+  });
+}
 
 exports.getImages = function(req, res) {
     Image.find({}, '-__v')

@@ -7,6 +7,7 @@ upload = multer(({ dest: module.exports.UPLOAD_PATH }));
 
 const router = express.Router();
 router.post("/registerbike", bikeCtrl.registerBike);
+router.get("/getbikes/:id", bikeCtrl.getBikes);
 router.post("/upload", upload.single('image'), bikeCtrl.uploadImage);
 router.get("/images", bikeCtrl.getImages);
 router.get('/images/:id', bikeCtrl.getImage);
