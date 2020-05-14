@@ -56,4 +56,19 @@ router.post('/signin', async (req, res) => {
    }
 });
 
+router.post('/updatepassword', async (req, res) => {
+   const { userId, password } = req.body;
+   
+   try {
+    const user = await User.findOne({ userId: user._id });
+    user.password = password;
+    await user.save();
+   
+    res.status(400).send({ message: "Password updated!" });
+
+   } catch (err) {
+    return res.status(422).send(err.message);
+   }
+});
+
 module.exports = router;
