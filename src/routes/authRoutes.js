@@ -58,9 +58,10 @@ router.post('/signin', async (req, res) => {
 
 router.post('/updatepassword', async (req, res) => {
    const { userId, password } = req.body;
-   
+   console.log(userId, password);
+
    try {
-    const user = await User.findOne({ userId: user._id });
+    const user = await User.findOne({ _id: userId });
     user.password = password;
     await user.save();
    
