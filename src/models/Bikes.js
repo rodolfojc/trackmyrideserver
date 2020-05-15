@@ -28,8 +28,8 @@ const bikeSchema = new mongoose.Schema({
     status: {
         type: String,        
     },
-    lock: {
-        type: Boolean,
+    locker: {
+        type: String,
     },
     img: [imagesSchema],
 });

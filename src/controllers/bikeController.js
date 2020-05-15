@@ -86,3 +86,22 @@ exports.getImage = function(req, res) {
         fs.createReadStream(path.join(UPLOAD_PATH, image.filename)).pipe(res);
     });
 };
+
+exports.updateBike = async function(req, res) {
+
+  const { serial, brand, color, type } = req.body;
+  let bikeId = req.params.id;
+  
+  Bike.findById(bikeId, (err, bike) => {
+    if (err) {
+        return res.sendStatus(400);
+    }
+    bike.serial = serial;
+    bike.brand = brand;
+    bike.color = color;
+    bike.type = type;
+    bike.save();
+    
+    res.json({message: "Bike updated!"});    
+  });
+} 
