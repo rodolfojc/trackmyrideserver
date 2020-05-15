@@ -65,7 +65,7 @@ router.post('/updatepassword/:id', async (req, res) => {
     user.password = password;
     await user.save();
    
-    res.status(400).send({ message: "Password updated!" });
+    res.json({ message: "Password updated!" });
 
    } catch (err) {
     return res.status(422).send(err.message);
