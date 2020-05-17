@@ -24,7 +24,7 @@ exports.registerBike = async (req, res) => {
     });
     console.log(bike);
     await bike.save();
-    res.status(200).send({ message: "Bike has been registered" });
+    res.status(200).send({ message: "Bike has been registered", bikeId: bike._id });
   } catch (err) {
     return res.status(422).send(err.message);
   }
@@ -89,7 +89,7 @@ exports.getImage = function(req, res) {
 
 exports.updateBike = async function(req, res) {
 
-  const { serial, brand, color, type } = req.body;
+  const { serial, brand, color, type, status, locker } = req.body;
   let bikeId = req.params.id;
   
   Bike.findById(bikeId, (err, bike) => {
@@ -100,6 +100,8 @@ exports.updateBike = async function(req, res) {
     bike.brand = brand;
     bike.color = color;
     bike.type = type;
+    bike.status = status;
+    bike.locker = locker;
     bike.save();
     
     res.json({message: "Bike updated!"});    
