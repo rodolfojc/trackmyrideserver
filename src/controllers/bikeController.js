@@ -8,7 +8,7 @@ const fs = require("fs");
 const del = require("del");
 
 exports.registerBike = async (req, res) => {
-  const { serial, brand, color, type, status, locker, userId } = req.body;  
+  const { serial, brand, color, type, status, lock , userId } = req.body;  
 
   try {
       //const user = await User.findOne({ _id : userId });
@@ -19,7 +19,7 @@ exports.registerBike = async (req, res) => {
       color,
       type,
       status,
-      locker,
+      lock,
       img: [],
     });
     console.log(bike);
@@ -89,7 +89,7 @@ exports.getImage = function(req, res) {
 
 exports.updateBike = async function(req, res) {
 
-  const { serial, brand, color, type, status, locker } = req.body;
+  const { serial, brand, color, type, status, lock } = req.body;
   let bikeId = req.params.id;
   
   Bike.findById(bikeId, (err, bike) => {
@@ -101,7 +101,7 @@ exports.updateBike = async function(req, res) {
     bike.color = color;
     bike.type = type;
     bike.status = status;
-    bike.locker = locker;
+    bike.lock = lock;
     bike.save();
     
     res.json({message: "Bike updated!"});    
