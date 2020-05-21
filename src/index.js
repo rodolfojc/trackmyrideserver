@@ -17,6 +17,7 @@ const app = express();
 // Parsing to JSON in Express
 app.use(bodyParser.json());
 
+// Main Routes
 app.use(authRoutes);
 app.use(bikeRoutes);
 app.use(rackRoutes);
@@ -40,6 +41,7 @@ mongoose.connection.on('error', err =>{
 });
 
 // Routing // Added middleware for token verification
+// Token deprecated
 app.get('/', requireAuth, (req, res) => {
     res.send(`Your email is: ${req.user.email}`);
 });

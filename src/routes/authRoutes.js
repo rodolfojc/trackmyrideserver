@@ -56,6 +56,7 @@ router.post('/signin', async (req, res) => {
    }
 });
 
+// Async Function for Updating an existing user password
 router.post('/updatepassword/:id', async (req, res) => {
    const { password } = req.body;
    const userId = req.params.id;

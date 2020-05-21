@@ -2,16 +2,14 @@ const UPLOAD_PATH = require('../routes/bikeRoutes').UPLOAD_PATH;
 const mongoose = require("mongoose");
 const Image = mongoose.model("Images");
 const Bike = mongoose.model("Bike");
-const User = mongoose.model('Users');
 const path = require("path");
 const fs = require("fs");
-const del = require("del");
 
+// Method to register a new bike
 exports.registerBike = async (req, res) => {
   const { serial, brand, color, type, status, lock , userId } = req.body;  
 
   try {
-      //const user = await User.findOne({ _id : userId });
       const bike = new Bike({
       userId: userId,
       serial,
@@ -30,6 +28,7 @@ exports.registerBike = async (req, res) => {
   }
 };
 
+// Upload a picture
 exports.uploadImage = async (req, res) => {
   
   let img = new Image();
@@ -46,6 +45,7 @@ exports.uploadImage = async (req, res) => {
   }
 };
 
+// Method to provide list of bikes for any user
 exports.getBikes = function(req, res) {
   let userId = req.params.id;
   Bike.find({ userId })
@@ -58,6 +58,7 @@ exports.getBikes = function(req, res) {
   });
 }
 
+// Get images method 
 exports.getImages = function(req, res) {
     Image.find({}, '-__v')
     .lean()
@@ -74,6 +75,7 @@ exports.getImages = function(req, res) {
     });
 };
 
+// Method to get bikes image
 exports.getImage = function(req, res) {
     
     let imgId = req.params.id;
